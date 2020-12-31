@@ -1,0 +1,16 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Insert title here</title>
+</head>
+<body>
+	<h1>페이지 목록 요청 하기</h1>
+	<script>
+		var pagesize = 20;
+		for (var i =1; i <= pagesize; i++) {
+			document.write("<a href=boardList?page=" +i+">" +i+ "</a> ");
+		}
+	</script>
+</body>
+</html>
