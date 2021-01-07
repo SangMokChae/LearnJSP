@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<display-name>Chapter5</display-name>
+	<servlet>
+		<servlet-name>configTest1</servlet-name>
+		<jsp-file>/configTest1.jsp</jsp-file>
+		<init-param>
+			<param-name>fileDir</param-name>
+			<param-value>C:\test</param-value>
+	</init-param>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>configTest1</servlet-name>
+		<url-pattern>/configTest1.jsp</url-pattern>
+	</servlet-mapping>
+</web-app>
