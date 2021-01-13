@@ -9,7 +9,10 @@
 <body>
 	<%
 		session.invalidate(); //session을 초기화 한다.
-		response.sendRedirect("template.jsp");
+		//session.removeAttribute("id");
+		
+		//response.sendRedirect("template.jsp"); 경고없이 로그아웃하기
+		out.println("<script src='javascript/logout.js'> </script>");
 	%>
 </body>
 </html>

@@ -22,8 +22,7 @@
 			out.println("</script>");
 	--%>
 		
-	<%		out.println("<script src='fail.js'>");
-			out.println("</script>");
+	<%		out.println("<script src='javascript/fail.js'> </script>");
 		}
 	%>
 </body>

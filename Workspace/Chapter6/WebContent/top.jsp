@@ -16,7 +16,7 @@
 	<a href="template.jsp?page=login">Log in</a>&nbsp;
 	<a href="template.jsp?page=join">Join</a>
 	<%} else { %>
-		<%=id %>님 환영합니다.&nbsp;
+		<font color="green">&nbsp; <%=id %>님 환영합니다.&nbsp; </font>
 	<a href="logout.jsp">Log out</a>
 	<%} %>
 </body>

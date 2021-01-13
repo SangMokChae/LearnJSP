@@ -8,12 +8,15 @@
 </head>
 <body>
 	<h1>회원 가입</h1>
-	<form action="joinReg" method="post" onclick="return">
-		회원명 : <input type="text" name="name"><br>
-		주소 : <input type="text" name="addr"><br>
+	<form action="joinReg.jsp" name="j_form" method="post">
+		아이디 : <input type="text" name="id"><br>
+		비밀번호 : <input type="text" name="passwd"><br>
+		이름 : <input type="text" name="name"><br>
 		전화번호 : <input type="text" name="tel"><br>
-		취미 : <input type="text" name="hobby"><br>
-		<input type="submit" value="회원 가입" />
+		<input type="submit" value="저장" id="save"/>
 	</form>
+	
+	<script src="javascript/check.js"></script>
+	<script src="javascript/saveAlim.js"></script>
 </body>
 </html>
