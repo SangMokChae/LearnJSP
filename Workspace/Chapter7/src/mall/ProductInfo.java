@@ -1,9 +1,9 @@
 package mall;
 
 public class ProductInfo {
-	private String code;
-	private String name;
-	private int price;
+	protected String code;
+	protected String name;
+	protected int price;
 	
 	public String getCode() {
 		return code;

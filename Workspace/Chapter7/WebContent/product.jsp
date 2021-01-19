@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-	<form action="BookInfo.jsp" method="get">
+	<form action="bookInfo.jsp" method="get">
 		<table border=1>
 			<tr>
 				<td colspan="2" align="center">책정보</td><tr />
@@ -39,7 +39,7 @@
 	</form>
 	<br />
 	<br />
-	<form action="ClothInfo.jsp" method="get">
+	<form action="clothInfo.jsp" method="get">
 		<table border=1>
 			<tr>
 				<td colspan="2" align="center">옷정보</td><tr />

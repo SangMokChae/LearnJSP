@@ -16,19 +16,4 @@ public class BookInfo extends ProductInfo {
 	public void setWriter(String writer) {
 		this.writer = writer;
 	}
-	@Override
-	public String getCode() {
-		// TODO Auto-generated method stub
-		return super.getCode();
-	}
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return super.getName();
-	}
-	@Override
-	public int getPrice() {
-		// TODO Auto-generated method stub
-		return super.getPrice();
-	}	
 }

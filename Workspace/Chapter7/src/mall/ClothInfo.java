@@ -16,20 +16,4 @@ public class ClothInfo extends ProductInfo{
 	public void setColor(String color) {
 		this.color = color;
 	}
-	
-	@Override
-	public String getCode() {
-		// TODO Auto-generated method stub
-		return super.getCode();
-	}
-	@Override
-	public String getName() {
-		// TODO Auto-generated method stub
-		return super.getName();
-	}
-	@Override
-	public int getPrice() {
-		// TODO Auto-generated method stub
-		return super.getPrice();
-	}
 }
