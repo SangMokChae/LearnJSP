@@ -1,0 +1,178 @@
+1. jsp? servlet?
+	jsp: html + java - 책 style
+		<%%> , <%= %>, <%! %>	.jsp로 나온다./
+		
+		html - web이 해석
+		client -> request -> web server (java code 해석불가) -> WAS(servelt container - java 코드 해석) -> 자동생성 구조3개(?) -> response
+		
+		web - Apache
+		was - tomcat (servelt container : java를 해석해서 html로 변경) / 웹로직, 제우스 = servelt container 끼리 바껴도 잘 돌아간다.
+
+		servelt = java에다 html 코드를 넣는것 (java가 기반이다.)
+
+	현업: java + jsp { jsp안에 java 코드를 빼고 사용 -> <%%>등이 들어가지 않는다. : 오래된 방식 // 오래된 것의 유지 보수 등에 아직 사용은 한다. // 교재 후반 } => jstl / el
+
+2. 구현방법
+	Coding? Develop?
+		coding: 사람이 아는 내용을 컴퓨터가 알 수 있도록 컴퓨터 언어로 변환하는 것 
+			-> source code
+		develop: process가 존재 { 
+				분석
+				설계
+				구현 -> coding
+				test
+				전개
+				 } => 전부하는 것이 개발자이다.!
+
+3. 아는냐? / 해봤냐?
+	ex) java로 ~을 해봤다! / javascript로 ~을 해봤다.  //	!- memory 적용을 정확히 아느냐 ?
+	
+4.java // python
+
+	java : OOP (객체 지향 언어) -> (1. Object(객체), 2. Class{Class Object} (객체), 3. Instance {Instance Class}(클래스)) <이 것에 대해 얼마나 잘 알고 있느냐? ->
+			java를 정확히 모르면 아무것도 할 수 없다.  => 현업은 결과가 돈과 귀결된다.>
+	
+		Object :	(사전적 의미: 사람, 사물 ) 현실에 존재
+----
+		Class: 맴버변수 + 맴버함수() [method()] 		// [현실에 존재하는 것에 어떤것을 다룰 것 인지이다.] - [연산이 가능한것은 모두 Class이다.] 
+			★ getter/ setter를 기본적으로 이해하기 // data type (String은 Object 이다.)
+			ex) 학생 (Class Student())
+
+		Instance: Class에서 생성된 1의 Data (맴버변수들 = filed)
+			ex) 홍길동 (Student hongkildong = new Student())
+
+			ex) 급여관리 system =>  object :점원, 세금, 4대보험
+			    monitor { 화질, 색상, 크기, 전력 } 에 관심을 가진다. -> Class: 무엇을 code화 할 것인지이다.
+			   Monitor(Class생성) monitor(Instance) = new Monitor();
+
+		API: 가져다가 쓸 수 있는 것들
+			ex) 정렬 : sort()
+
+		추상화 - abstract(원형이 하나만 존재), -★★★<현업에서 가장 많이 사용> interface  (imprement)
+			
+		상속 - extends
+
+		다형성 - Override -> 동일한 함수명은 있는데 그것을 내가 사용하고자 할때 -ex) public void A() {super(). [이 부분을 사용자가 임의로 변경] } ★★★<현업에서 가장 많이 사용>
+
+		         - Overriding -> ex) public void A(int a)
+				     ex) public void A(int a, String b) [전달인자나 return value를 달리해서 동일한 method를 사용하기 위해 사용]
+
+	python - 외부라이버리의 다양성
+
+5. 일 vs 공부
+		how		goal 		money
+	일:	잘해야된다.	60점		수익
+
+	공부:      열심히		100점		비용
+
+6일 패턴
+	일 -> 다음날 오류처리 -> 이후 일 복귀 (사이클)		
+	
+	★★★★★ 입사하자마자 바로 일에 투입되도 할 수 있는 정도로 능력을 키우고 입사를 해야한다.
+
+	★★★ 경력 3년이 중요하다.!
+
+7. jsp
+	Client -> Request -> Web/tomcat/ (html) -> Response -> Client
+	
+	Client <%page %> -> Request -> Web /tomcat/ (index.jsp) -> servelt (WebApplicationServer) => 
+		index.jsp -> servelt = {index.jsp.java -> (comfile) -> index.jsp.class[byte code로 변환 // JVM에서 실행 ]} ->
+		원하던 jsp를 Response -> Client
+
+	if index.jsp를 미리 .java로 해놓으면 처리속도가 증가한다.
+
+	★ 컴파일 과정 / servelt변환 과정 / memory 관리
+
+8.Computer
+	보조기억장치(HDD)
+		Windows10(OS), Eclipse, Apache Tomcat
+	RAM(메모리)
+		1) OS영역 -> { Base 레지스터 를 걸어 다른 것들의 침범을 막음 } 
+		2) Eclipse가 메모리에 올라와 사용이 가능케 한다. {365mb but 필요부붐만 메모리에 올리고 나머지는 가상메모리에 올린다.} (paging기법/ overay기법)
+		3) cpu에서 어떻게 처리 할꺼냐?
+			ex) a.jsp -> 1. 하드디스크에 할당 (★헤르츠 2.5gh => 1초에 2500만번 꺼졌다 커짐)-> 2. memory에 올라옴 -> 3cpu와 통신
+
+		Stack 영역으로 할당 { class, final, static 키워드로 된 것)
+		heap 영역으로 할당 { auto변수(프로그램 상에서 생성되는 변수) -> java garbage Collecter가 처리// 프로그래머가 처리 불가
+
+		Member{ String name; String tel; int age; toString() { 3개 변수 할당}
+		Member meber = new Member() {};
+			=> stack
+				toString(), String name, tel, int tel <Class Object == 붕어빵 틀>
+			=> heap
+				member() {name = 홍길동, tel = 111, age(4byte) = 20} -> Member Class를 참조하고 있다.
+				member1() {name = 홍길순, tel = 222, age(4byte) = 18} -> Member Class를 참조하고 있다. -> toString을 사용할때 참조된 Member Class에서 받아 사용
+				<Instance Class == 크림 붕어빵, 팥 붕어빵>
+			
+		ex) 1stack
+			1-1.heap = "a.com" [<Thread> 내꺼만 이 안에서 동작하면 된다.] outOfMemory-> 다른곳으로 침범!
+			1-2.heap = "b.com"
+			1-3.heap = "c.com"
+	CPU(메모리랑만 이야기한다)
+	BootRoom -> OS위치를 알려주고 메모리에 로딩해줌
+
+9. Error
+	404 - 경로오류
+	500 - 메모리충돌(tomcat-log를 봐야한다. // 내가 할당받은 영역으로 다시 오지 않을때 ---> tomcat 껏다 다시키기)
+		server => 365일 24시간 지속적!! - default option!!★★
+
+10. MVC Spring FramWork <jsp책  650p 참조>
+	MVC :	Client -> Controller가 모든 request를 받는다. //(web.xml에 설정해 주어야 한다.) -> model로보내서 -> 보호객체(DTo) -> DB -> Controller -> view -> Client
+			Controller = Servelt class ->{http/sevlet/Request.java} // *.do
+				1-1. web.xml에서 사용하는 방법
+				1-2. 언어텐션에서 사용 (ex: override)
+			Model = .class -> DB에서 자료를 가지고 오는 역활 (VO),(DH(A?)O) --> 그냥 java다.  // DB작업이 없으면 안써도 된다.
+			view = (순수)jsp =(html, css, jQurry, jstl, EL}
+		★★★★★ 이 모델을 기억하고 이것만 우선 잘하고 이해할 것 // 현업에서는 사용안함 -> Spring FramWork는 MVC 모델 기반이다.
+
+	Spring FramWork -> 모든 요청은 디스페쳐가 받는다. // JAVA, JSP, MVC, XML에 대해 능통해야 한다.
+
+11. 형태
+	기본 형태를 만들줄 알아야한다.
+
+12. 현업
+	tomcat 8.5를 많이 사용한다.
+	dynamic web module version은 3.1(=servelt) (tomcat 8이후) or 2.5 를 많이 사용한다. (Client의 WAS기준)
+	tomcat 버전을 빼고 (anything)everything으로 해놓는게 좋다. // 사용자 혹은 다른사람의 서버가 제우스이거나 다른 서버일 수 있기 때문
+	가급적이면 java jre가 아니라 jdk 버전을 사용 하는게 좋다. - 배포시의 문제 때문에 (maiben build)
+	묶을때 .war (class jsp파일만 들어감) 소스코드 없이 만든다. project - 오른쪽 마우스 - import - war file
+
+	/ content.pass
+	webContent
+		web-inf -> servelt container 를 통해서만 접속이 가능하다.
+			lib -> 외부 라이브러리를 담기 위해서
+			jsp Folder - jsp파일을 만들어준다.
+			web.xml - [tomcat은 하나의 엔진에 여러개의 닷컴을 넣을 수 있다.] -> 톰켓 전체가 아니라 나만의 것에만 적용되는 것을 적어 놓는다.ㄴ
+		index.jsp
+	## cq code guide line - 한국 진흥원 // cq화 (=안전화)
+
+	ex) /Hello2
+		-web.xml default화
+
+	RUN할때 project에 마우스 오른쪽해서 run as 하고 필요없는것 빼고 실행
+
+	C:\Jsp\Tomcat 8.5\work\Catalina\localhost\ROOT\org\apache\jsp ---> servelt서버가 java파일로 만들어줌
+
+	web-inf/jsp folder : 여기에 .jsp를 넣어야 한다. // 보안을 위해서 여기 넣어야 한다.
+
+13. 개발환경
+	개발환경구축이 정확해야 된다.
+
+	jsp 서블릿을 만들때 .~.~ 닷(.)이 2개 이상 포함되도록 만든다.
+		회사 도메인 역순
+		->ex) 가스공사 =>wr.pj = project name ->> co.gass.wr.pj
+
+★★★★★★★★★ 가장 기본이 가장 중요하다. // 정해진 틀에 맞춰서 해야 한다. --- project는 함께하는 것이다.	
+
+	session 객체는 서버에 저장 --> session 은 소멸되기 전까지 지속적으로 만들어 주지 않는다. 처음만 만든다.
+		다른 요청이 들어올때마다 아래것들을 만들어준다.
+	id나 다른것들은 request객체에 저장
+	response객체는 response 돌려주는 것이다. // Hello2.project참조 
+
+		view와 controll을 분리하기 어려워서 만들때 처음부터 mvc모델을 사용한다.
+	
+	servlet만들고 servlet name다음 next다음 url.mapping에 edit하고 .do를 넣어준다.
+
+	★★★★front-end-commend model ===> nomard Code Youtube Clone Coding 다시 공부하기★★★★
+
+	model 2 방식을 배울 것 // API 필요!!
