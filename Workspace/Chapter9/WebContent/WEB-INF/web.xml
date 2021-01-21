@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app>
+	<error-page> <!-- 오타 / 설정값 오류 시에 작동-->
+		<error-code>500</error-code>
+		<location>/500.jsp</location> <!-- 오류 발생시 500.jsp 페이지로 이동한다. -->
+	</error-page>
+	
+	<error-page>	<!-- 위치값 / 지정위치 오류 시에 작동 -->
+		<error-code>404</error-code>
+		<location>/404.jsp</location> <!-- 오류 발생시 404.jsp 페이지로 이동한다. -->
+	</error-page>
+	
+	<error-page>
+		<exception-type>java.lang.NullPointerException</exception-type>
+		<location>/null.jsp</location>
+	</error-page>
+</web-app>
