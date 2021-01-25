@@ -19,7 +19,7 @@
 </head>
 <body>
 	<section id="uploadFormArea">
-		<form action="fileUpload.jsp" method="post" enctype="multipart/form-data"> <!-- file 전송을 위해서 enctype는 필수이다. -->
+		<form action="fileUpload" method="post" enctype="multipart/form-data"> <!-- file 전송을 위해서 enctype는 필수이다. -->
 			<table>
 				<tr>
 					<td colspan="2" class="td_title" > 파일 업로드 폼 </td>

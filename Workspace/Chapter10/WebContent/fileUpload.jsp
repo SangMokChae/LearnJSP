@@ -4,7 +4,7 @@
 <%@ page import="com.oreilly.servlet.multipart.DefaultFileRenamePolicy" %>
 <%@ page import="java.util.*" %>
 <%
-	// request.getServletContext().getReaPath("/upload"); 형식으로 바뀜
+	// request.getServletContext().getReaPath("/upload"); 형식으로 바뀜 // servlet에서 이렇게 사용
 	String uploadPath = request.getRealPath("/upload");
 	//String uploadPath = application.getRealPath("/upload") -> 자바 9 이후 버전부터 이렇게 사용해야 한다.
 	

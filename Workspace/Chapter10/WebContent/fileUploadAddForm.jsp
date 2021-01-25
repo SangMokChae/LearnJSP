@@ -22,22 +22,22 @@
 	function insRow() {
 		cnt++;
 		oTb1 = document.getElementById("addTable");
-		var oRow = oTb1.insertRow();
+		var oRow = oTb1.insertRow(); // 행을 삽입하는 js코드
 		oRow.onmouseover = function() {
 			oTb1.clickedRowIndex = this.rowIndex
 		}; // clickedRowIndex - 클릭한 Row의 위치를 확인
-		var oCell1 = oRow.insertCell();
+		var oCell1 = oRow.insertCell(); // table 안에 열(Row)을 추가하는 js 코드
 		var oCell2 = oRow.insertCell(); 
 		//삽일될 Form Tag		
 		var frmTag1 = "<label for='fileName" +cnt +"'>파일명 : </label>";
 		var frmTag2 = "<input type='file' name='fileName" +cnt +"' id='fileName" +cnt +"'>";
 		frmTag2 += "<input type=button value='삭제' onClick='removeRow()' style='cursor:hand'>";
-		oCell1.innerHTML = frmTag1
+		oCell1.innerHTML = frmTag1 //입력창 추가를 누르면 tag가 생성되는 것처럼 보이는 것
 		oCell2.innerHTML = frmTag2
 	}
 	// Row 삭제
 	function removeRow() {
-		oTb1.deleteRow(oTb1.clickedRowIndex);
+		oTb1.deleteRow(oTb1.clickedRowIndex); //this.rowIndex를 잡아 주는 부분
 	}
 	
 	function frmCheck() {
@@ -47,7 +47,7 @@
 				if(!frm.elements[i].value) {
 					alert("업로드 할 파일을 선택하세요");
 					frm.elements[i].focus();
-					return flase;
+					return false;
 				}
 			}
 		}
@@ -57,7 +57,7 @@
 </head>
 <body>
 	<section id="uploadFormArea">
-		<form action="multiFileUpload" name="f" method="post" enctype="multipart/form-data" onsubmit="return frmCheck()">
+		<form action="multiFileUpload.jsp" name="f" method="post" enctype="multipart/form-data" onsubmit="return frmCheck()">
 			<table width="100%">
 				<tr>
 					<td colspan="2" class="td_title">파일 업로드 폼</td>
