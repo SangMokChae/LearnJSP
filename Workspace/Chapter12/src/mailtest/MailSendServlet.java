@@ -1,9 +1,10 @@
 package mailtest;
 
-
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.Properties;
 import javax.mail.Address;
+import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Session;
 import javax.mail.Transport;
@@ -14,10 +15,6 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import java.util.Properties;
-import javax.mail.Authenticator;
-
-
 
 /**
  * Servlet implementation class MailSendServlet
@@ -71,7 +68,7 @@ public class MailSendServlet extends HttpServlet {
 			message.setFrom(sender_address);
 			message.addRecipient(Message.RecipientType.TO, receiver_address);
 			message.setSubject(subject);
-			message.setContent(content,"text/html;charset-utf-8");
+			message.setContent(content,"text/html;charset=utf-8");
 			message.setSentDate(new java.util.Date());
 			
 			Transport.send(message);
@@ -79,10 +76,6 @@ public class MailSendServlet extends HttpServlet {
 		}catch(Exception e) {
 			out.println("SMTP 서버가 잘못 설정되거나 서비스에 문제가 있습니다.");
 			e.printStackTrace();
-			
-			
-			
 		}
 	}
-
 }
