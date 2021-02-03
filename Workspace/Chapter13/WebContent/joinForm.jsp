@@ -19,7 +19,7 @@
 	td:nth-child(2) {
 		text-align: left;
 	}
-	#idChk,
+	#idCheck,
 	#postSr {
 		margin-left: 3px;
 	}
@@ -37,7 +37,8 @@
 			</tr>
 			<tr>
 				<td><label for="id">아이디 : </label></td> 
-				<td><input type="text" name="id" id="id" /><input type="button" value="아이디 중복확인" name="idChk" id="idChk" /></td>
+				<td><input type="text" name="id" id="id" /><input type="button" value="아이디 중복확인" name="idCheck" id="idCheck" 
+					onclick="window.open('idCheck1.jsp?openInit=true','','width=300,height=200')" /></td> <!-- ''부분은 blank랑 같은 효과 -->
 			</tr>
 			<tr>
 				<td><label for="pass">비밀번호 : </label></td>
@@ -92,6 +93,9 @@
 		// form 유효성 검사 함수 실행하기
 		// 전송버튼 사용할 경우 <from onsubmit="return 함수()" 
 		// 그외 하이퍼링크, 버튼 등등 직접호출하는 방식으로 호출해야 한다. / 함수에 submit()을 추가해야 한다.
+		
+		var chkId = false;
+		var idcheck; 
 		
 		//유효성 검사
 		function formCheck(f) {

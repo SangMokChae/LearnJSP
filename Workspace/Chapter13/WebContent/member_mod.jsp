@@ -7,10 +7,10 @@
 	request.setCharacterEncoding("utf-8");
 
 	if((session.getAttribute("id") == null) || (!((String)session.getAttribute("id")).equals("admin"))) {
-		out.print("<script>");
-		out.print("alert('관리자로 로그인하세요!!')");
-		out.print("location.href='loginForm.jsp'");
-		out.print("</script>");
+		out.println("<script>");
+		out.println("alert('관리자로 로그인하세요!!')");
+		out.println("location.href='loginForm.jsp'");
+		out.println("</script>");
 	}
 	
 	String mod_id = request.getParameter("id");
@@ -60,7 +60,7 @@
 			%>
 			<tr>
 				<td>아이디 : </td>
-				<td><%=rs.getString("id") %></td>
+				<td><input type="hidden" name="id" value='<%=rs.getString("id") %>'><%=rs.getString("id") %></td>
 			</tr>
 			<tr>
 				<td>비밀번호 : </td>
