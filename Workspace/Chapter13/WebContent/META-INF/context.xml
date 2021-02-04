@@ -16,7 +16,7 @@
 	type="javax.sql.DataSource"
 	username="java"
 	password="java"
-	driverClassName="com.mysql/cj-jdbc.Driver"
+	driverClassName="com.mysql.cj.jdbc.Driver"
 	factory="org.apache.tomcat.dbcp.dbcp2.BasicDataSourceFactory"
 	url="jdbc:mysql://localhost:3306/zip?serverTimezone=UTC"
 	maxActive="500"

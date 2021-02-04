@@ -25,3 +25,5 @@ zibunSerial varchar(2) null comment '읍면동일련번호',
 zibun2 varchar(4) null comment '지번부번',
 oldzipCode varchar(6) null comment '구우편번호',
 zipSerial varchar(3) null comment '우편번호일련번호')
+
+load data infile 'c:/jsp/zip/17.txt' into table zipcode character set 'utf8' fields terminated by '|' ignore 1 lines;

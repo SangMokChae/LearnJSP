@@ -68,8 +68,11 @@
 				<td><input type="text" name="email" id="email" /></td>
 			</tr>
 			<tr>
-				<td><label for="postNum">우편번호 : </label></td>
-				<td><input type="text" name="postNum" id="postNum" /><input type="button" value="검색" name="postSr" id=postSr></td>
+				<td><label for="zip">우편번호 : </label></td>
+				<td>
+					<input type="text" name="zip" id="zip" size=6 readonly/>
+					<input type="button" name="zipSearch" value="검색" id="zipSearch" onclick="window.open('zip.jsp','','width=800, height=600')" />
+				</td>
 			</tr>
 			<tr>
 				<td><label for="addr">주소 : </label></td>
