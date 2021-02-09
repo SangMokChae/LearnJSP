@@ -1,30 +1,23 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ page import="java.sql.*" %>
-<%@ page import="javax.sql.*" %>
-<%@ page import="javax.naming.*" %>
-<%
-	String id = null;
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 
-	if((session.getAttribute("id") == null) || (!((String)session.getAttribute("id")).equals("admin"))) {
-		out.println("<script>");		
-		out.println("location.href='loginForm.jsp'");
-		out.println("</script>");
-	}
-	
-	Connection conn = null;
-	PreparedStatement pstmt = null;
-	ResultSet rs = null;
-	
-	try {
-		Context init = new InitialContext();
-		DataSource ds = (DataSource) init.lookup("java:comp/env/jdbc/OracleDB");
-		conn = ds.getConnection();
-		
-		pstmt = conn.prepareStatement("select * from member");
-		rs = pstmt.executeQuery();
-		
-%>
+<fmt:requestEncoding value="utf-8"/>
+
+<c:if test="${id eq null or id ne 'admin' }">
+	<script>
+		alert('관리자로 로그인하세요!!');
+		location.href='loginForm.jsp';
+	</script>
+</c:if>
+
+<sql:setDataSource var="con" dataSource="jdbc/OracleDB"/>
+<sql:query var="rs" dataSource="${con }">
+	select * from member
+</sql:query>
+
 <!DOCTYPE html>
 <html>
 <head>
@@ -48,30 +41,17 @@
 		<tr>
 			<td colspan=2 class="td_title">회원 목록</td>
 		</tr>
-		<%while (rs.next()) { %>
+		<c:forEach var="row" items="${rs.rows }">
 		<tr>
 			<td>
-				<a href="member_info.jsp?id=<%=rs.getString("id") %>"><%=rs.getString("id") %></a>
+				<a href="member_info.jsp?id=${row.id}">${row.id }</a>
 			</td>
 			<td>
-				<a href="member_mod.jsp?id=<%=rs.getString("id") %>">수정</a>&nbsp;
-				<a href="member_delete.jsp?id=<%=rs.getString("id") %>">삭제</a>				
+				<a href="member_mod.jsp?id=${row.id }>">수정</a>&nbsp;
+				<a href="member_delete.jsp?id='${row.id }'">삭제</a>				
 			</td>
 		</tr>
-		<%} %>
+		</c:forEach>
 	</table>
 </body>
 </html>
-<%
-	} catch(Exception e) {
-		e.printStackTrace();
-	} finally {
-		try{
-			rs.close();
-			pstmt.close();
-			conn.close();
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-%>

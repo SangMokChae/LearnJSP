@@ -5,8 +5,8 @@
 <%@ taglib prefix="sql" uri="http://java.sun.com/jsp/jstl/sql" %>
 <fmt:requestEncoding value="utf-8" /> <!-- 처음 page 초기화 -->
 
-<c:set var="loginId" value="#{param.id }"/>   		 <!-- 넘어오는 id 값 설정 -->
-<c:set var="pass" value="#{param.pass }"/>   		 <!-- 넘어오는 password 값 설정 -->
+<c:set var="loginId" value="${param.id }"/>   		 <!-- 넘어오는 id 값 설정 -->
+<c:set var="pass" value="${param.pass }"/>   		 <!-- 넘어오는 password 값 설정 -->
 
 <sql:setDataSource var="con" dataSource="jdbc/OracleDB"/>  
 <sql:query var="rs" dataSource="${con }"> 
