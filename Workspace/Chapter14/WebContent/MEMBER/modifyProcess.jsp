@@ -14,44 +14,39 @@
 </c:if>
 
 <c:catch var="err">
-	<sql:setDataSource var="con" dataSource="jdbc/OracleDB"/>
+	<sql:setDataSource var="con" dataSource="jdbc/OracleDB" />
 	<sql:update var="result" dataSource="${con }">
-		delete from member where id = ?
+		update member set password=?, name=?, age=?, gender=?, email=? where id = ?
+		<sql:param>${param.pass }</sql:param>
+		<sql:param>${param.name }</sql:param>
+		<sql:param>${param.age }</sql:param>
+		<sql:param>${param.gender }</sql:param>
+		<sql:param>${param.email }</sql:param>
 		<sql:param>${param.id }</sql:param>
 	</sql:update>
-</c:catch> 
+</c:catch>
+
 <c:choose>
-	<c:when test="${err eq null }"> <!-- error 가 없는 경우 -->
+	<c:when test="${result > 0 }">
 		<c:choose>
 			<c:when test="${result > 0 }">
 				<script>
-					alert("${param.id }님이 삭제되었습니다.");
-					location.href='member_list.jsp';
+					alert("정보가 수정되었습니다.");
+					location.href='member_info.jsp?id=${param.id}'
 				</script>
 			</c:when>
 			<c:otherwise>
 				<script>
-					alert('회원정보가 삭제되지 않았습니다.');
+					alert("정보 수정이 실패하였습니다. 다시 시도해 보세요");
 					history.back();
 				</script>
 			</c:otherwise>
-		</c:choose>
+		</c:choose>		
 	</c:when>
 	<c:otherwise>
 		<script>
-			alert('데이터 삭제에 오류가 발생했습니다.');
-			location.href='member_list.jsp';
+			alert("오류가 발생하였습니다. 다시시도해 보세요");
+			history.back();
 		</script>
 	</c:otherwise>
 </c:choose>
-
-<!DOCTYPE html>
-<html>
-<head>
-<meta charset="UTF-8">
-<title>Insert title here</title>
-</head>
-<body>
-
-</body>
-</html>

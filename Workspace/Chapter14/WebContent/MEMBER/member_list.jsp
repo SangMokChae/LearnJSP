@@ -47,8 +47,8 @@
 				<a href="member_info.jsp?id=${row.id}">${row.id }</a>
 			</td>
 			<td>
-				<a href="member_mod.jsp?id=${row.id }>">수정</a>&nbsp;
-				<a href="member_delete.jsp?id='${row.id }'">삭제</a>				
+				<a href="member_mod.jsp?id=${row.id }">수정</a>&nbsp;
+				<a href="member_delete.jsp?id=${row.id }">삭제</a>				
 			</td>
 		</tr>
 		</c:forEach>

@@ -41,7 +41,7 @@
 		<table>
 				<tr>
 					<td>아이디 : </td>
-					<td>${row.id }, ${info.id }</td>
+					<td>${row.id }<%-- ${info.id } --%></td>
 				</tr>
 				<tr>
 					<td>비밀번호 : </td>
