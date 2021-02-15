@@ -53,7 +53,7 @@ public class JdbcUtil {
 	public static void commit(Connection con) {
 		
 		try {
-			con.close();
+			con.commit();
 			System.out.println("commit success");
 		} catch (Exception e) {
 			e.printStackTrace();

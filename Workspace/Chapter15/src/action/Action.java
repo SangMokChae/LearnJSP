@@ -2,9 +2,9 @@ package action;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
-import vo.ActionForword;
+import vo.ActionForward;
 
 
 public interface Action {
-	ActionForword execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
+	ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception;
 }
