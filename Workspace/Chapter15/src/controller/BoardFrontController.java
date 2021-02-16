@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import action.Action;
+import action.BoardListAction;
 import action.BoardWriteProAction;
 import vo.ActionForward;
 
@@ -63,12 +64,19 @@ public class BoardFrontController extends HttpServlet {
 		
 		if(command.equals("/boardWriteForm.bo")) {
 			forward = new ActionForward();
-			forward.setPath("/board/qna_board_write.jsp"); // direct로 넘김
+			forward.setPath("/board/qna_board_write.jsp"); // direct로 넘김 /dispatcher 방식으로 넘김
 		} else if (command.equals("/boardWritePro.bo")) {
-			action = new BoardWriteProAction();
+			action = new BoardWriteProAction(); // 인터페이스로 하는 이유 -> 관리하기 편해서 but 굳이 안해도 된다.
 			try {
 				forward = action.execute(request, response);				
 			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("boardList.bo")) {
+			action = new BoardListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
 				e.printStackTrace();
 			}
 		}

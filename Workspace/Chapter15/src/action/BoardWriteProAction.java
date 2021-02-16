@@ -32,7 +32,7 @@ public class BoardWriteProAction implements Action {
 		boardBean.setBoard_content(multi.getParameter("board_content"));
 		boardBean.setBoard_file(multi.getOriginalFileName((String)multi.getFileNames().nextElement()));
 		BoardWriteProService boardWriteProService = new BoardWriteProService();
-		boolean isWriteSuccess = boardWriteProService.registAtricle(boardBean);
+		boolean isWriteSuccess = boardWriteProService.registAtricle(boardBean); //까지 data값 처리
 		
 		if(!isWriteSuccess) {
 			response.setContentType("text/html;charset=UTF-8");
@@ -44,7 +44,8 @@ public class BoardWriteProAction implements Action {
 		} else {
 			forward = new ActionForward();
 			forward.setRedirect(true);
-			forward.setPath("boardList.bo");
+			forward.setPath("boardList.bo"); // servlet에서 bo 호출시에 server root 바로 밑에 존재해야 된다. / 절대 경로로 설정시에 위치상의 차이를 보일 수 있다.
+			// 넘겨주는 값이 없어서 direct로 보낼수 있다.
 		}
 		
 		return forward;

@@ -5,6 +5,8 @@ import static db.JdbcUtil.*;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
+import java.util.ArrayList;
+
 import javax.sql.DataSource;
 
 import vo.BoardBean;
@@ -75,6 +77,71 @@ public class BoardDAO {
 			if(pstmt != null) close(pstmt);
 		}
 		return insertCount;
+	}
+	
+	// 글 개수 구하기
+	public int selectListCount() {
+		int listCount = 0;
+		PreparedStatement pstmt = null; // db의 값을 호출하기 위해
+		ResultSet rs = null;
+		
+		try {
+			pstmt = con.prepareStatement("select count(*) from board");
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) { // db에서 불러온 값이 있으면 -> 값은 1개 밖에 존재하지 않는다.
+				listCount = rs.getInt(1); // 1은 열 1을 의미한다.
+			}
+		} catch(Exception e) {
+			System.out.println("getListCount 에러 : " +e);
+			e.printStackTrace(); // 에러 났을때 에러가 어디서 났는지 확실히 알려준다.
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return listCount;
+	}
+	
+	// 글 목록 보기
+	public ArrayList<BoardBean> selectArticleList(int page, int limit) {
+		ArrayList<BoardBean> list = new ArrayList<BoardBean>();
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		String board_list_sql = "select * from board order by board_re_ref desc, board_re_seq asc limit ?, ?"; // 각 글에서 / 관련글
+		//처음 시작하는 글위치 /읽기 시작할 row 번호
+		int startrow = (page - 1) * 10;
+	
+		try {
+			pstmt = con.prepareStatement(board_list_sql);
+			pstmt.setInt(1, startrow);
+			pstmt.setInt(2, limit);
+			rs = pstmt.executeQuery();
+			
+			while (rs.next()) {
+				BoardBean boardBean = new BoardBean(); //생성은 반복문 안에서 해야한다 / 하나 하나의 개별적 값을 넣기 위해서
+				boardBean.setBoard_num(rs.getInt("board_num"));
+				boardBean.setBoard_name(rs.getString("board_name"));
+				boardBean.setBoard_subject(rs.getString("board_subject"));
+				boardBean.setBoard_content(rs.getString("board_content"));
+				boardBean.setBoard_file(rs.getString("board_file"));
+				boardBean.setBoard_re_ref(rs.getInt("board_re_ref"));
+				boardBean.setBoard_re_lev(rs.getInt("board_re_lev"));
+				boardBean.setBoard_re_seq(rs.getInt("board_re_seq"));
+				boardBean.setBoard_readcount(rs.getInt("board_recount"));
+				boardBean.setBoard_date(rs.getDate("board_date"));
+				list.add(boardBean);
+			}
+		} catch(Exception e) {
+			System.out.println("getBoardList 에러" +e);
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+			
+		return list;
 	}
 
 }
