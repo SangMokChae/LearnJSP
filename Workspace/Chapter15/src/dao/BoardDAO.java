@@ -129,7 +129,7 @@ public class BoardDAO {
 				boardBean.setBoard_re_ref(rs.getInt("board_re_ref"));
 				boardBean.setBoard_re_lev(rs.getInt("board_re_lev"));
 				boardBean.setBoard_re_seq(rs.getInt("board_re_seq"));
-				boardBean.setBoard_readcount(rs.getInt("board_recount"));
+				boardBean.setBoard_readcount(rs.getInt("board_readcount"));
 				boardBean.setBoard_date(rs.getDate("board_date"));
 				list.add(boardBean);
 			}

@@ -45,13 +45,13 @@ public class BoardListAction implements Action {
 		ArrayList<BoardBean> articleList = new ArrayList<>(); // page를 나누기 위해
 		articleList = boardListService.getArticleList(page, limit);
 		
-		 request.setAttribute("pageInfo", pageInfo);
-		 request.setAttribute("articleList", articleList);
+		request.setAttribute("pageInfo", pageInfo);
+		request.setAttribute("articleList", articleList);
 		 
-		 ActionForward forward = new ActionForward();
-		 forward.setPath("/board/qna_board_list.jsp"); //dispatcher로 연결
+		ActionForward forward = new ActionForward();
+		forward.setPath("/board/qna_board_list.jsp"); //dispatcher로 연결
 		
-		 return forward;
+		return forward;
 	}
 
 }
