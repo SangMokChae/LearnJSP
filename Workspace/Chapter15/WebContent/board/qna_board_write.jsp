@@ -6,6 +6,11 @@
 <meta charset="UTF-8">
 <title>Insert title here</title>
 <style>
+	body {
+		border: 1px solid orange;
+		padding-bottom: 10px;
+	}
+
 	#registForm {
 		width: 500px;
 		height: 610px;
@@ -86,7 +91,7 @@
 						<label for="board_file">파일 첨부</label>
 					</td>
 					<td class="td_right">
-						<input type="file" name="board_file" id="board_file" required/>
+						<input type="file" name="board_file" id="board_file"/>
 					</td>
 				</tr>
 			</table>

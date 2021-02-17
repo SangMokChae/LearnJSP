@@ -111,7 +111,7 @@ public class BoardDAO {
 		
 		String board_list_sql = "select * from board order by board_re_ref desc, board_re_seq asc limit ?, ?"; // 각 글에서 / 관련글
 		//처음 시작하는 글위치 /읽기 시작할 row 번호
-		int startrow = (page - 1) * 10;
+		int startrow = (page - 1) * limit;
 	
 		try {
 			pstmt = con.prepareStatement(board_list_sql);
@@ -142,6 +142,61 @@ public class BoardDAO {
 		}
 			
 		return list;
+	}
+
+	// 조회수 업데이트
+	public int updateReadCount(int board_num) {		
+		PreparedStatement pstmt = null;
+		int updateCount = 0;
+		String sql = "update board set board_readcount = board_readcount+1 where board_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			updateCount = pstmt.executeUpdate();
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
+
+	// 글 내용 보기
+	public BoardBean selectArticle(int board_num) {
+		BoardBean article = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from board where board_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				article = new BoardBean();
+				article.setBoard_num(rs.getInt("board_num"));
+				article.setBoard_name(rs.getString("board_name"));
+				article.setBoard_subject(rs.getString("board_subject"));
+				article.setBoard_content(rs.getString("board_content"));
+				article.setBoard_file(rs.getString("board_file"));
+				article.setBoard_re_ref(rs.getInt("board_re_ref"));
+				article.setBoard_re_lev(rs.getInt("board_re_lev"));
+				article.setBoard_re_seq(rs.getInt("board_re_seq"));
+				article.setBoard_readcount(rs.getInt("board_readcount"));
+				article.setBoard_date(rs.getDate("board_date"));
+			}
+		} catch (Exception e) {
+			System.out.println("getDetail 에러 : " +e);
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return article;
 	}
 
 }
