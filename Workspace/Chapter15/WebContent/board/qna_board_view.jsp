@@ -4,6 +4,7 @@
 <%
 	BoardBean article = (BoardBean)request.getAttribute("article");
 	String nowPage = (String)request.getAttribute("page");
+	if(nowPage == null) nowPage = "1"; // nowPage값이 안넘어 올 경우에 기준 1 page로 지정
 %>
 <!DOCTYPE html>
 <html>
@@ -58,9 +59,9 @@
 		</section>
 	</section>
 	<section id="commandList">
-		<a href="boardReplyForm.bo?board_num=<%=article.getBoard_num() %>&page=<%=nowPage %>">[답변]</a>
-		<a href="boardModifyForm.bo?board_num=<%=article.getBoard_num() %>">[수정]</a>
-		<a href="boardDeleteForm.bo?board_num=<%=article.getBoard_num() %> &page=<%=nowPage %>">[삭제]</a>
+		<a href="boardReplyForm.bo?board_num=<%=article.getBoard_num() %>&page=<%=nowPage %>">[답변]</a>&nbsp;
+		<a href="boardModifyForm.bo?board_num=<%=article.getBoard_num() %>&page=<%=nowPage %>">[수정]</a>&nbsp;
+		<a href="boardDeleteForm.bo?board_num=<%=article.getBoard_num() %>">[삭제]</a>&nbsp;
 		<a href="boardList.bo?page=<%=nowPage %>">[목록]</a>&nbsp;&nbsp;
 	</section>
 </body>

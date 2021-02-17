@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import action.Action;
 import action.BoardDetailAction;
 import action.BoardListAction;
+import action.BoardModifyFormAction;
 import action.BoardWriteProAction;
 import vo.ActionForward;
 
@@ -81,14 +82,21 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/boardDetail.bo")) {
-		action = new BoardDetailAction();
-		try {
-			forward = action.execute(request, response);
-		} catch(Exception e) {
-			e.printStackTrace();
-		}
-	}
-		
+			action = new BoardDetailAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}  else if (command.equals("/boardModifyForm.bo")) {
+			action = new BoardModifyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} 
+			
 		if(forward != null) {
 			if(forward.isRedirect()) {
 				response.sendRedirect(forward.getPath()); // getPath에 경로가 존재
