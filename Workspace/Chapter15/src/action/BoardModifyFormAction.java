@@ -13,7 +13,10 @@ public class BoardModifyFormAction implements Action {
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
 		
 		ActionForward forward = new ActionForward();
-		int board_num = Integer.parseInt(request.getParameter("board_num"));
+		int board_num = 1;
+		if (request.getParameter("board_num") != null) {
+			board_num = Integer.parseInt(request.getParameter("board_num"));
+		}
 		String page = request.getParameter("page");
 		// BoardBean article = boardDetailService.getArticle(board_num); / getArticle을 사용하면 조회수가 1 올라간다.
 		
@@ -21,6 +24,7 @@ public class BoardModifyFormAction implements Action {
 		BoardBean article =  boardModifyFromSvc.getArticle(board_num);
 		request.setAttribute("article", article);
 		request.setAttribute("page", page);
+
 		forward.setPath("/board/qna_board_modify.jsp");
 
 		return forward;

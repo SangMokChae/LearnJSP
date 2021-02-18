@@ -1,8 +1,6 @@
 package svc;
 
-import static db.JdbcUtil.close;
-import static db.JdbcUtil.getConnection;
-
+import static db.JdbcUtil.*;
 import java.sql.Connection;
 
 import dao.BoardDAO;
@@ -20,7 +18,8 @@ public class BoardModifyFormSvc {
 			con = getConnection();
 			BoardDAO boardDAO = BoardDAO.getInstance(); // 싱글톤
 			boardDAO.setConnection(con);
-
+			article = boardDAO.selectArticle(board_num); // 빼먹으면 modify.jsp page에 nullPoint error가 발생한다.
+			
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {

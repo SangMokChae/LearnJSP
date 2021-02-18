@@ -33,7 +33,6 @@
 		background: rgba(255,165,0, 0.21);
 		margin-top: 20px;
 		height: 350px;
-		text-align: center;
 		overflow: auto;
 	}
 	
@@ -56,6 +55,7 @@
 		</section>
 		<section id="articleContentArea">
 			<%=article.getBoard_content() %>
+			<%-- enter 형식을 적용 할려면 태그형식으로 만들어야 enter가 적용이 된다. --%>
 		</section>
 	</section>
 	<section id="commandList">

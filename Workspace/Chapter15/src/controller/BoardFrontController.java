@@ -13,6 +13,9 @@ import action.Action;
 import action.BoardDetailAction;
 import action.BoardListAction;
 import action.BoardModifyFormAction;
+import action.BoardModifyProAction;
+import action.BoardReplyFormAction;
+import action.BoardReplyProAction;
 import action.BoardWriteProAction;
 import vo.ActionForward;
 
@@ -90,6 +93,27 @@ public class BoardFrontController extends HttpServlet {
 			}
 		}  else if (command.equals("/boardModifyForm.bo")) {
 			action = new BoardModifyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/boardModifyPro.bo")) {
+			action = new BoardModifyProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/boardReplyForm.bo")) {
+			action = new BoardReplyFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/boardReplyPro.bo")) {
+			action = new BoardReplyProAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

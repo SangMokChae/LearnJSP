@@ -28,11 +28,7 @@ public class BoardDAO {
 	public void setConnection(Connection con) {
 		this.con = con;		
 	}
-	
-	//글의 개수 구하기
-//	public int selectListCount() {
-//		
-//	}
+
 
 	//글 등록
 	public int insertArticle(BoardBean article) {
@@ -77,6 +73,28 @@ public class BoardDAO {
 			if(pstmt != null) close(pstmt);
 		}
 		return insertCount;
+	}
+	
+	// 글 수정
+	public int updateArticle(BoardBean article) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update board set board_subject = ?, board_content = ? where board_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, article.getBoard_subject());
+			pstmt.setString(2, article.getBoard_content());
+			pstmt.setInt(3, article.getBoard_num());
+			updateCount = pstmt.executeUpdate();
+		} catch (Exception e) {
+			System.out.println("boardModify 에러 : " +e);
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
 	}
 	
 	// 글 개수 구하기
@@ -197,6 +215,32 @@ public class BoardDAO {
 		}
 		
 		return article;
+	}
+	
+	// 글쓴이 인지 확인
+	public boolean isArticleBoardWriter(int board_num, String pass) {
+		boolean isWriter = false;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from board where board_num = ? and board_pass = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			pstmt.setString(2, pass);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				isWriter = true;
+			}
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return isWriter;
 	}
 
 }
