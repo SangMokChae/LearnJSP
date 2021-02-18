@@ -242,5 +242,75 @@ public class BoardDAO {
 		
 		return isWriter;
 	}
+	
+	// 글 답변(글등록과 유사)
+	public int insertReplyArticle(BoardBean article) {
+		int insertCount = 0;
+		
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		
+		try {
+			// 관련글 seq 업데이터
+			String sql = "update board set board_re_seq = board_re_seq+1 where board_re_ref = ? and board_re_seq > ?";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, article.getBoard_re_ref());
+			pstmt.setInt(2, article.getBoard_re_seq());
+			pstmt.executeUpdate();
+			
+			// 입력할 글 번호 생성
+			int num = 1;
+			pstmt = con.prepareStatement("select max(board_num) from board");
+			rs = pstmt.executeQuery();
+			if(rs.next()) {
+				num = rs.getInt(1) + 1;
+			}
+			
+			// 답글 입력
+			sql = "insert into board values(?,?,?,?,?,'',?,?,?,0,now())";
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, num);
+			pstmt.setString(2, article.getBoard_name());
+			pstmt.setString(3, article.getBoard_pass());
+			pstmt.setString(4, article.getBoard_subject());
+			pstmt.setString(5, article.getBoard_content());
+			pstmt.setInt(6, article.getBoard_re_ref());
+			pstmt.setInt(7, article.getBoard_re_lev() + 1); //현재 글보다 하나 밑에 존재
+			pstmt.setInt(8, article.getBoard_re_seq() + 1); //현재 글보다 하나 밑에 존재
+			insertCount = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			System.out.println("boardReply 에러 : " +e);
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		
+		return insertCount;
+	}
+	
+	// 글 삭제
+	public int deleteArticle(int board_num) {
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from board where board_num = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, board_num);
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			System.out.println("boardDelete 에러 :" +e);
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return deleteCount;
+	}
 
 }

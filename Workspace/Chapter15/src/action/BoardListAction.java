@@ -17,11 +17,11 @@ public class BoardListAction implements Action {
 		
 		BoardListService boardListService = new BoardListService();
 		int page = 1;
-		int limit = 5;
+		int limit = 20;
 		int limitPage = 10; // 글 갯수를 조절하기 위해서
 		// page수를 정의 해주기 위해서 / limit는 1page에 보이는 목록(글)의 갯수를 의미한다.
 		
-		if(request.getParameter("page") != null) {
+		if(request.getParameter("page") != null && !request.getParameter("page").equals("null")) {
 			page = Integer.parseInt(request.getParameter("page"));
 		}
 		
