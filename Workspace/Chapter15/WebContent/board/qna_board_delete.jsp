@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
-	int board_num = (Integer)request.getAttribute("board_num");
+	int board_num = (Integer)request.getAttribute("board_num"); // 만약 Controller에서 String 값으로 넘겨주면 (String) board_num = (String)request.getAttribute("board_num");으로 해야한다.
 	String nowPage = (String)request.getAttribute("page");
 %>
 <!DOCTYPE html>
@@ -37,7 +37,7 @@
 				<tr>
 					<td colspan="2">
 						<input type="submit" value="삭제" />&nbsp;&nbsp;
-						<input type="button" value="돌아가기" onClick="javascript:hsitory.go(-1)" />
+						<input type="button" value="돌아가기" onClick="javascript:history.go(-1)" />
 					</td>
 				</tr>
 			</table>

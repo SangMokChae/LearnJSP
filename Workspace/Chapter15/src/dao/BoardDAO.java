@@ -309,7 +309,6 @@ public class BoardDAO {
 			close(pstmt);
 		}
 		
-		
 		return deleteCount;
 	}
 

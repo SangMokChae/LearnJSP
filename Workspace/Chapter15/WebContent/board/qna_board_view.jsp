@@ -59,7 +59,7 @@
 		</section>
 	</section>
 	<section id="commandList">
-		<a href="boardReplyForm.bo?board_num=<%=article.getBoard_num() %>&page=<%=nowPage %>">[답변]</a>&nbsp;
+		<a href="boardReplyForm.bo?board_num=<%=article.getBoard_num() %>&page=<%=nowPage %>">[답변]</a>&nbsp; <%-- board_num 과 page를 넘겨줌 --%>
 		<a href="boardModifyForm.bo?board_num=<%=article.getBoard_num() %>&page=<%=nowPage %>">[수정]</a>&nbsp;
 		<a href="boardDeleteForm.bo?board_num=<%=article.getBoard_num() %>">[삭제]</a>&nbsp;
 		<a href="boardList.bo?page=<%=nowPage %>">[목록]</a>&nbsp;&nbsp;

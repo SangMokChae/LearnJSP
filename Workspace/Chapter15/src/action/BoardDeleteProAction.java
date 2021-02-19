@@ -15,10 +15,12 @@ public class BoardDeleteProAction implements Action {
 		ActionForward forward = null;
 		int board_num = Integer.parseInt(request.getParameter("board_num"));
 		String page = request.getParameter("page");
-		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
-		boolean isArticleWriter = boardDeleteProService.isArticleWriter(board_num, request.getParameter("board_pass"));
+		String board_pass = request.getParameter("board_pass");
 		
-		if(!isArticleWriter) {
+		BoardDeleteProService boardDeleteProService = new BoardDeleteProService();
+		boolean isArticleWriter = boardDeleteProService.isArticleWriter(board_num, board_pass);
+		
+		if(!isArticleWriter) { // 작성자가 아닌 것
 			response.setContentType("text/html;charset=UTF-8");
 			PrintWriter out = response.getWriter();
 			out.println("<script>");
@@ -26,7 +28,7 @@ public class BoardDeleteProAction implements Action {
 			out.println("history.back();");
 			out.println("</script>");
 			out.close();
-		} else {
+		} else { // 작성자가 맞는 것
 			boolean isDeleteSuccess = boardDeleteProService.removeArticle(board_num);
 			
 			if(!isDeleteSuccess) {
@@ -47,3 +49,11 @@ public class BoardDeleteProAction implements Action {
 	}
 
 }
+	// 선생님 식 풀이
+	// public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
+//			ActionForward forward = null;
+//			String board_num = request.getParameter("board_num");
+//			String page = request.getParameter("page");
+			
+//			return forward;
+	// }

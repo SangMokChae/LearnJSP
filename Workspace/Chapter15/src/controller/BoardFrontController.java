@@ -121,10 +121,12 @@ public class BoardFrontController extends HttpServlet {
 				e.printStackTrace();
 			}
 		} else if (command.equals("/boardDeleteForm.bo")) {
-			String page = request.getParameter("page");
-			request.setAttribute("page", page);
 			int board_num = Integer.parseInt(request.getParameter("board_num"));
+			String page = request.getParameter("page");
+
 			request.setAttribute("board_num", board_num);
+			request.setAttribute("page", page);
+			
 			forward = new ActionForward();
 			forward.setPath("/board/qna_board_delete.jsp");
 		} else if (command.equals("/boardDeletePro.bo")) {
