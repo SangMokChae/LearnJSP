@@ -1,11 +1,17 @@
 package controller;
 
 import java.io.IOException;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import action.Action;
+import action.JoinProAction;
+import vo.ActionForward;
 
 /**
  * Servlet implementation class memberController
@@ -26,16 +32,57 @@ public class memberController extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		try {
+			doProcess(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
 	}
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
+		try {
+			doProcess(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	}
+
+	private void doProcess(HttpServletRequest request, HttpServletResponse response) throws Exception {
+		request.setCharacterEncoding("utf-8");
+		String requestURI = request.getRequestURI();
+		String contextPath = request.getContextPath();
+		String command = requestURI.substring(contextPath.length());
+		System.out.println(command);
+		
+		ActionForward forward = null;
+		Action action = null;
+		
+		if(command.equals("/loginForm.log")) {
+			forward = new ActionForward();
+			forward.setPath("/member/loginForm.jsp"); // 디스페쳐로 보내서 경로를 서블릿 경로로 남겨둠
+		} else if (command.equals("/joinForm.mem")) {
+			forward = new ActionForward();
+			forward.setPath("/member/joinForm.jsp");
+		} else if (command.equals("joinProcess.mem")) {
+			action = new JoinProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		}
+		
+		if(forward != null) {
+			if(forward.isRedirect()) {
+				response.sendRedirect(forward.getPath());
+			} else {
+				RequestDispatcher dispatcher = request.getRequestDispatcher(forward.getPath());
+				dispatcher.forward(request, response);
+			}
+		}
 	}
 
 }
