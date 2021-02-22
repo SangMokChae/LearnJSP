@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import action.JoinProAction;
 import action.LoginProAction;
+import action.MemberInfoAction;
 import action.MemberListAction;
 import vo.ActionForward;
 
@@ -92,6 +93,13 @@ public class memberController extends HttpServlet {
 			forward.setPath("main.jsp");
 		} else if (command.equals("/memberList.mem")) {
 			action = new MemberListAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/memberInfo.mem")) {
+			action = new MemberInfoAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

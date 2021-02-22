@@ -72,7 +72,6 @@ public class MemberDAO {
 			close(pstmt);
 		}
 		
-		
 		return member;
 	}
 

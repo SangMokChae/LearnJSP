@@ -42,7 +42,7 @@
 		<%for(int i = 0; i < memberList.size(); i++) { %>
 		<tr>
 			<td>
-				<a href="memberInpfo.mem?id=<%=memberList.get(i).getId()%>"><%=memberList.get(i).getId() %></a>
+				<a href="memberInfo.mem?id=<%=memberList.get(i).getId()%>"><%=memberList.get(i).getId() %></a>
 			</td>
 			<td>
 				<a href="memberModForm.mem?id=<%=memberList.get(i).getId() %>">수정</a>&nbsp;
