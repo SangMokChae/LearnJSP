@@ -1,14 +1,16 @@
 package svc;
 
-import static db.JdbcUtil.*;
 import java.sql.Connection;
+
 import dao.MemberDAO;
+
+import static db.JdbcUtil.*;
 import vo.MemberBean;
 
-public class JoinProSvc {
+public class LoginService {
 
-	public boolean joinMember(MemberBean member) {
-		boolean isJoinSuccess = false;
+	public static MemberBean getMember(String id) {
+		MemberBean member = null;
 		Connection con = null;
 		
 		try {
@@ -16,21 +18,14 @@ public class JoinProSvc {
 			MemberDAO memberDao = MemberDAO.getInstance();
 			memberDao.setConnection(con);
 			
-			int insertCount = memberDao.insertMember(member);
-			
-			if(insertCount > 0) {
-				commit(con);
-				isJoinSuccess = true;
-			} else {
-				rollback(con);
-			}
-			
+			member = memberDao.selectMember(id);
 		} catch(Exception e) {
 			e.printStackTrace();
 		} finally {
 			close(con);
 		}
 		
-		return isJoinSuccess;
+		return member;
 	}
+	
 }

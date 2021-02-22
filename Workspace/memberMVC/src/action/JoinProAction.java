@@ -20,7 +20,7 @@ public class JoinProAction implements Action {
 		member.setId(request.getParameter("id"));
 		member.setPass(request.getParameter("pass"));
 		member.setName(request.getParameter("name"));
-		member.setAge(Integer.parseInt(request.getParameter("age")));	
+		member.setAge(Integer.parseInt(!(request.getParameter("age") == null || request.getParameter("age").equals("")) ? request.getParameter("age"): request.getParameter("1")));	
 		member.setGender(request.getParameter("gender"));
 		member.setEmail(request.getParameter("email"));
 		
