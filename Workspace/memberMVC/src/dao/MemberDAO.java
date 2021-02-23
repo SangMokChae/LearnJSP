@@ -135,4 +135,48 @@ public class MemberDAO {
 		}		
 		return memberList;
 	}
+
+	public int updateMember(MemberBean member) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update member set password=?, name=?, age=?, gender=?, email=? where id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, member.getPass());
+			pstmt.setString(2, member.getName());
+			pstmt.setInt(3, member.getAge());
+			pstmt.setString(4, member.getGender());
+			pstmt.setString(5, member.getEmail());
+			pstmt.setString(6, member.getId());
+			updateCount = pstmt.executeUpdate();
+						
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
+
+	public int deleteMember(String id) {
+		int deleteCount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "delete from member where id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, id);
+			deleteCount = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		
+		return deleteCount;
+	}
 }

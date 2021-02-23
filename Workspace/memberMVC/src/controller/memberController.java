@@ -13,8 +13,11 @@ import javax.servlet.http.HttpSession;
 import action.Action;
 import action.JoinProAction;
 import action.LoginProAction;
+import action.MemberDeleteAction;
 import action.MemberInfoAction;
 import action.MemberListAction;
+import action.MemberModFormAction;
+import action.MemberModProAction;
 import vo.ActionForward;
 
 /**
@@ -100,6 +103,27 @@ public class memberController extends HttpServlet {
 			}
 		} else if (command.equals("/memberInfo.mem")) {
 			action = new MemberInfoAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/memberModForm.mem")) {
+			action = new MemberModFormAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/memberModPro.mem")) {
+			action = new MemberModProAction();
+			try {
+				forward = action.execute(request, response);
+			} catch(Exception e) {
+				e.printStackTrace();
+			}
+		} else if (command.equals("/memberDel.mem")) {
+			action = new MemberDeleteAction();
 			try {
 				forward = action.execute(request, response);
 			} catch(Exception e) {

@@ -10,7 +10,7 @@ import svc.MemberInfoSvc;
 import vo.ActionForward;
 import vo.MemberBean;
 
-public class MemberInfoAction implements Action {
+public class MemberModFormAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
@@ -23,20 +23,19 @@ public class MemberInfoAction implements Action {
 			
 			out.println("<script>");
 			out.println("alert('관리자로 로그인하세요!!');");
-			out.println("location.href='loginForm.jsp';");
+			out.println("location.href='loginForm.log';");
 			out.println("</script>");
 		} else {
 			String id = request.getParameter("id");
 
-			MemberInfoSvc memberInfoSvc = new MemberInfoSvc();
+			MemberInfoSvc memberInfoSvc = new MemberInfoSvc(); // 중복 사용중
 			MemberBean member = memberInfoSvc.getLoginInfo(id);
 			
 			if(member != null) {
 				request.setAttribute("member", member);
 				
 				forward = new ActionForward();
-				forward.setPath("/member/member_info.jsp");
-//				forward.setRedirect(redirect); 를 하면 안에 내용을 넘기기 위해서 보내준다. 그래서 바로보내지 않기 위해 디스패쳐를 사용한다.
+				forward.setPath("/member/member_mod.jsp");
 			} else {
 				response.setContentType("text/html;charset=utf-8");
 				PrintWriter out = response.getWriter();
@@ -47,7 +46,7 @@ public class MemberInfoAction implements Action {
 				out.println("</script>");
 			}
 		}
-				
+		
 		return forward;
 	}
 

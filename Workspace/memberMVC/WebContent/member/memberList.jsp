@@ -46,8 +46,9 @@
 			</td>
 			<td>
 				<a href="memberModForm.mem?id=<%=memberList.get(i).getId() %>">수정</a>&nbsp;
-				<a href="memberDel.jsp?id=<%=memberList.get(i).getId() %>">삭제</a>				
+				<a href="javascript:deleteMember('<%=memberList.get(i).getId() %>')">삭제</a>				
 			</td>
+				<%--삭제버튼 눌러서 바로 삭제하는 것은 좋지 않다. --%>
 		</tr>
 		<%} %>
 	</table>
@@ -72,5 +73,13 @@
 			<a href="memberList.mem?page=<%=nowPage + 1 %>">[다음]</a>
 		<%} %>
 	</section>
+	<script>
+		function deleteMember(id) {
+			if(confirm('정말 삭제하시겠습니까?')) {
+				location.href="memberDel.mem?id=" +id; 
+				//아이디 확인 삭제
+			}
+		}
+	</script>
 </body>
 </html>
