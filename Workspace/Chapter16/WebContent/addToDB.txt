@@ -1,0 +1,7 @@
+alter table users add (grade varchar2(1));
+
+update users set grade='N' where id = 'java';
+
+insert into users values ('admin', 'admin', '대구시', 40, 'sss@sss.com', 'M', '관리자', '대한민국', 'S');
+
+/// 책이랑 다른점
