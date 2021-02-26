@@ -15,7 +15,7 @@ public class DogCartQtyUpSvc {
 		
 		for(int i = 0; i < cartList.size(); i++) {
 			
-			if(cartList.get(i).getKind().equals(kind)) {
+			if(cartList.get(i).getKind().equals(kind)) { // 같은객체라서 변경하면 적용이 된다.
 				cartList.get(i).setQty(cartList.get(i).getQty() + 1);
 			}
 		}

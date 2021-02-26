@@ -26,11 +26,12 @@ public class DogCartListAction implements Action {
 			totalMoney += money;
 		}
 		
-		request.setAttribute("totalMoney", totalMoney);
+		request.setAttribute("totalMoney", totalMoney); // 이 2개의 값이 넘어가게 된다.
 		request.setAttribute("cartList", cartList);
 		
 		forward = new ActionForward();
 		forward.setPath("dogCartList.jsp");
+		forward.setRedirect(false);
 		
 		return forward;
 	}

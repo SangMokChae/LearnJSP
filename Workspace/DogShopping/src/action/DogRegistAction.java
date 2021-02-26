@@ -22,14 +22,14 @@ public class DogRegistAction implements Action {
 		String realFolder = "";
 		//파일 업로드될 서버 상의 물리적인 경로
 		
-		String saveFolder = "/images";
+		String saveFolder = "/images"; //이미지 저장 폴더
 		String encType = "utf-8";
 		int maxSize = 5* 1024 * 1024;
 		//한번에 업로드 할 수 있는 파일의 크기
 		
 		ServletContext context = request.getServletContext();
 		realFolder = context.getRealPath(saveFolder);
-		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy());
+		MultipartRequest multi = new MultipartRequest(request, realFolder, maxSize, encType, new DefaultFileRenamePolicy()); // file 삽입
 		String image = multi.getFilesystemName("image");
 		Dog dog = new Dog(
 				0,

@@ -35,7 +35,7 @@ public class DogCartAddSvc {
 		return dog;
 	}
 
-	public void addCart(HttpServletRequest request, Dog cartDog) {
+	public void addCart(HttpServletRequest request, Dog cartDog) { //DogCartAddAction 안에 구현해도 된다. request의 영향이 service에 넘어옴
 		HttpSession session = request.getSession();
 		ArrayList<Cart> cartList = (ArrayList<Cart>)session.getAttribute("cartList");
 		
@@ -63,5 +63,6 @@ public class DogCartAddSvc {
 			cartList.add(cart);
 		}
 	}
-
 }
+
+	// cartList속성 1. session, 2. request(default)

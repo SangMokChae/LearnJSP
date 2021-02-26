@@ -32,8 +32,11 @@ public class DogListAction implements Action {
 		request.setAttribute("dogList", dogList);
 		request.setAttribute("todayImageList", todayImageList);
 		
-		forward = new ActionForward();
-		forward.setPath("dogList.jsp");
+//		forward = new ActionForward();
+//		forward.setPath("dogList.jsp");
+//		forward.setRedirect(false);
+		
+		forward = new ActionForward("dogList.jsp", false);
 		
 		return forward;
 	}

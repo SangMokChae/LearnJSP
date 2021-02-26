@@ -18,8 +18,8 @@ public class DogCartSearchAction implements Action {
 		int startMoney = Integer.parseInt(request.getParameter("startMoney"));
 		int endMoney = Integer.parseInt(request.getParameter("endMoney"));
 		
-		ArrayList<Cart> cartList = dogCartSearchSvc.getCartSearchList(startMoney, endMoney, request);
-		request.setAttribute("cartList", cartList);
+		ArrayList<Cart> cartList = dogCartSearchSvc.getCartSearchList(startMoney, endMoney, request); //응답하면 사라짐 / session의 값을 받아와서 request에 할당
+		request.setAttribute("cartList", cartList); // 둘다 같은 이름의 cartList로 설정해서 가져온다. (searchSvc 참조)
 		request.setAttribute("startMoney", startMoney);
 		request.setAttribute("endMoney", endMoney);
 

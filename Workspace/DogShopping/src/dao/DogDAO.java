@@ -115,7 +115,7 @@ public class DogDAO {
 		return updateCount;
 	}
 	
-	public int insertDog(Dog dog) {
+	public int insertDog(Dog dog) { //Oracle에는 시퀀스가 존재 - 다음숫자가 올라옴(자동으로 사용시)
 		int insertCount = 0;
 		PreparedStatement pstmt = null;
 		String sql = "insert into dog values(dog_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";

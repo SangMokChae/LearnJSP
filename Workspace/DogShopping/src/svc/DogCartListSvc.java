@@ -15,24 +15,4 @@ public class DogCartListSvc {
 		return cartList;
 	}
 }
-
-//public ArrayList<Cart> getCartList(HttpServletRequest request) {
-//	ArrayList<Cart> cartList = null;
-//	Connection con = null;
-//	
-//	try {
-//		con = getConnection();
-//		DogDAO dogDao = DogDAO.getInstance();
-//		dogDao.setConnection(con);
-//		HttpSession session = request.getSession();
-//		
-//		cartList = (ArrayList<Cart>)session.getAttribute("cartList");
-//	} catch(Exception e) {
-//		e.printStackTrace();
-//	} finally {
-//		close(con);
-//	}
-//	
-//	return cartList;
-//}
-
+// 굳이 안만들어도 된다.

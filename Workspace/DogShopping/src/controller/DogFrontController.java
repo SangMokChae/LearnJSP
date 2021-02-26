@@ -145,6 +145,7 @@ public class DogFrontController extends HttpServlet {
 			} catch(Exception e) {
 				e.printStackTrace();
 			}
+			// forward = new ActionForward("dogRegistForm.jsp", false);
 		}
 		
 		// 3. 포워딩
@@ -156,5 +157,6 @@ public class DogFrontController extends HttpServlet {
 				dispatcher.forward(request, response);
 			}
 		}
+		// 이 forward처리 코드가 없으면 빈화면이 뜬다.
 	}
 }

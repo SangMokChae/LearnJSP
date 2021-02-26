@@ -80,7 +80,7 @@
 		}
 	}
 	
-	function checkQty(kind,qty) {
+	function checkQty(kind,qty) { // 1이되면 더 내려가지 않게 실행한다.
 		if(qty != 1) {
 			location.href="dogCartQtyDown.dog?kind=" +kind;
 		}

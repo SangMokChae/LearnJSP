@@ -11,7 +11,7 @@ public class DogCartSearchSvc {
 
 	public ArrayList<Cart> getCartSearchList(int startMoney, int endMoney, HttpServletRequest request) {
 		HttpSession session = request.getSession();
-		ArrayList<Cart> oldCartList = (ArrayList<Cart>)session.getAttribute("cartList");
+		ArrayList<Cart> oldCartList = (ArrayList<Cart>)session.getAttribute("cartList"); // 원래 값
 		ArrayList<Cart> cartList = new ArrayList<Cart>();
 		
 		for(int i = 0; i < oldCartList.size(); i++) {
