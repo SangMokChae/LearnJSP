@@ -16,7 +16,7 @@ public class DogCartQtyUpAction implements Action {
 		dogCartQtyUpSvc.upCartQty(kind, request);
 		
 		forward = new ActionForward();
-		forward.setPath("dogCartList");
+		forward.setPath("dogCartList.dog");
 		forward.setRedirect(true);
 		
 		return forward;

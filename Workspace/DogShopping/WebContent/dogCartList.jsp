@@ -74,7 +74,7 @@
 		if(theForm.remove.length == undefined) {
 			theForm.remove.checked = theForm.allCheck.checked;
 		} else {
-			for(car i = 0; i<theForm.remove.length; i++) {
+			for(var i = 0; i<theForm.remove.length; i++) {
 				theForm.remove[i].checked = theForm.allCheck.checked;
 			}
 		}

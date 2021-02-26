@@ -13,8 +13,8 @@ public class DogCartSearchAction implements Action {
 
 	@Override
 	public ActionForward execute(HttpServletRequest request, HttpServletResponse response) throws Exception {
-		ActionForward forward = null;
 		DogCartSearchSvc dogCartSearchSvc = new DogCartSearchSvc();
+		
 		int startMoney = Integer.parseInt(request.getParameter("startMoney"));
 		int endMoney = Integer.parseInt(request.getParameter("endMoney"));
 		
@@ -32,7 +32,7 @@ public class DogCartSearchAction implements Action {
 		}
 		
 		request.setAttribute("totalMoney", totalMoney);
-		forward = new ActionForward();
+		ActionForward forward = new ActionForward();
 		forward.setPath("dogCartList.jsp");
 		
 		return forward;

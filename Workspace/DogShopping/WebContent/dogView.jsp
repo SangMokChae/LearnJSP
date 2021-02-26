@@ -25,9 +25,11 @@
 	}
 	#content_left {
 		width: 300px;
+		float:left;
 	}
 	#content_right{
 		width: 340px;
+		float:left;
 	}
 	#commandList {
 		text-align: center;
@@ -51,7 +53,9 @@
 				<b>신장 : </b> ${dog.height }<br />
 				<b>체중 : </b> ${dog.weight }<br />
 				<b>원산지 : </b> ${dog.country }<br />
+				<p id="desc">
 				<b>내용 : </b> ${dog.content }<br />
+				</p>
 			</section>
 			<div style="clear:both"></div>
 			<nav id="commandList">

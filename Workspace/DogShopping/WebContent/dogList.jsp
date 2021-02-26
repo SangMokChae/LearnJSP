@@ -11,7 +11,7 @@
 <style>
 	#listForm{
 		width: 700px;
-		height: 500px;
+		height: auto;
 		border: 1px solid red;
 		margin: auto;
 	}
@@ -74,7 +74,7 @@
 					<tr>
 						<c:forEach var="todayImage" items="${todayImageList }" varStatus="status">
 						<td>
-							<img src="images/${todayImage }" id="todyaImage" />
+							<img src="images/${todayImage }" id="todayImage" />
 						</td>
 						<c:if test="${((status.index + 1 ) mod 4) == 0}">
 					</tr>
@@ -83,8 +83,9 @@
 						</c:forEach>
 					</tr>
 				</table>
+				<h2><a href="dogCartList.dog">장바구니</a></h2>
 			</div>
-			</c:if>
+		</c:if>
 	</section>
 </body>
 </html>

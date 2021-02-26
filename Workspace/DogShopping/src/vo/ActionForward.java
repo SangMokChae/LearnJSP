@@ -5,6 +5,11 @@ public class ActionForward {
 	private boolean redirect;
 	
 	public ActionForward() {}
+	
+	public ActionForward(String path, boolean redirect) {
+		this.path = path;
+		this.redirect = redirect;
+	}
 
 	public String getPath() {
 		return path;

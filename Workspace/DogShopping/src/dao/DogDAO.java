@@ -62,19 +62,85 @@ public class DogDAO {
 		return dogList;
 	}
 
-	public int insertDog(Dog dog) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	public int updateReadCount(int id) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 	public Dog selectDog(int id) {
-		// TODO Auto-generated method stub
-		return null;
+		Dog dog = null;
+		PreparedStatement pstmt = null;
+		ResultSet rs = null;
+		String sql = "select * from dog where id = ?";
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			rs = pstmt.executeQuery();
+			
+			if(rs.next()) {
+				dog = new Dog(
+						rs.getInt("id"),
+						rs.getString("kind"),
+						rs.getInt("price"),
+						rs.getString("image"),
+						rs.getString("country"),
+						rs.getInt("height"),
+						rs.getInt("weight"),
+						rs.getString("content"),
+						rs.getInt("readcount")
+						);
+			}
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(rs);
+			close(pstmt);
+		}
+		
+		return dog;
 	}
+	
+	public int updateReadCount(int id) {
+		int updateCount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "update dog set readCount = readcount + 1 where id = ?";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setInt(1, id);
+			updateCount = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return updateCount;
+	}
+	
+	public int insertDog(Dog dog) {
+		int insertCount = 0;
+		PreparedStatement pstmt = null;
+		String sql = "insert into dog values(dog_seq.nextval, ?, ?, ?, ?, ?, ?, ?, ?)";
+		
+		try {
+			pstmt = con.prepareStatement(sql);
+			pstmt.setString(1, dog.getKind());
+			pstmt.setInt(2, dog.getPrice());
+			pstmt.setString(3, dog.getImage());
+			pstmt.setString(4, dog.getCountry());
+			pstmt.setInt(5, dog.getHeight());
+			pstmt.setInt(6, dog.getWeight());
+			pstmt.setString(7, dog.getContent());
+			pstmt.setInt(8, dog.getReadcount());
+			insertCount = pstmt.executeUpdate();
+			
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return insertCount;
+	}
+
+
 
 }
